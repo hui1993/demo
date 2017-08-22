@@ -1,0 +1,20 @@
+{
+  "name": "queryweather",
+  "version": "1.0.1",
+  "description": "this is a command line to query the weather.",
+  "main": "index.js",
+  "bin":{
+    "weather":"./index.js"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "weather"
+  ],
+  "author": "hui1993",
+  "license": "ISC",
+  "dependencies":{
+    "axios":"^0.16.2"
+  }
+}
