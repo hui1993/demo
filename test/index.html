@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>个人blog首页</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+			font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;}
+		ul,ol{list-style: none;}
+		body{min-width: 1350px;}
+		a{text-decoration: none;}
+
+		@font-face {
+		  font-family: 'iconfont';  /* project id 368100 */
+		  src: url('//at.alicdn.com/t/font_0nuvngkzcmims4i.eot');
+		  src: url('//at.alicdn.com/t/font_0nuvngkzcmims4i.eot?#iefix') format('embedded-opentype'),
+		  url('//at.alicdn.com/t/font_0nuvngkzcmims4i.woff') format('woff'),
+		  url('//at.alicdn.com/t/font_0nuvngkzcmims4i.ttf') format('truetype'),
+		  url('//at.alicdn.com/t/font_0nuvngkzcmims4i.svg#iconfont') format('svg');
+		}
+		.iconfont{
+			font-family: 'iconfont'; 
+			font-style: normal;
+		}
+		.clearfix:after{
+			content: "";
+			display: block;
+			clear: both;
+			height: 1px;
+		}
+		.subtitle{
+			margin:0 auto;
+			padding-top: 80px;
+			padding-bottom: 50px;
+			text-align: center;
+		}
+		.subtitle > h2{
+			font-size: 50px;
+			line-height: 90px;
+			color: rgb(51,51,51);
+		} 
+		.subtitle > p{
+			font-size: 16px;
+    		font-family: "Droid Serif";
+    		font-style: italic;
+   			 font-weight: 600;
+   			 color: rgb(75,75,75);
+		}
+		.item{
+			box-sizing: border-box;
+			width: 1200px;
+			color: #000;
+			margin:0 auto;
+		}
+		.item > ul {
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.item > ul >li{
+			width: 380px;
+			margin: 10px;
+			text-align: center;
+		}
+		.bird{
+			width: 200px;
+			height: 60px;
+			margin: 10px auto;
+		}
+		.bird >a{
+			margin: 10px;
+			display: inline-block;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			background-color: black;
+			line-height: 40px;
+			font-size: 30px;
+			color: white;
+			text-align: center;
+		}
+		.bird > a:hover{
+			background-color: orange;
+		}
+		/*common*/
+		.navigation {
+			position: fixed;
+			width: 100%;
+			background-color: rgba(0,0,0,0.6);
+			z-index: 100;
+		}
+		.navigation >.layout{
+			width: 1250px;
+			margin: 10px auto;
+		}
+
+		.navigation > .layout > a{
+			display: inline-block;
+			height: 50px;
+			padding: 0 20px;
+			color: white;
+			float: left;
+			text-align: center;
+			line-height: 50px;
+			font-size: 18px;
+			border-radius: 3px;
+		}
+		.navigation > .layout > a:hover{
+			background-color: orange;
+		}
+		.navigation > .layout >a:nth-child(1){
+			width: 260px;
+			font-size: 32px;
+			color: orange;
+			margin-right:340px;
+			text-align: left;
+		}
+		.navigation > .layout >a:first-child:hover{
+			background-color: rgba(0,0,0,0);
+		}
+		/* navigation*/
+		.header{
+			position: relative;
+			background-image: url(http://5.66825.com/download/pic/000/326/93b209bd7cc1f2a209d2086d8f9965a1.jpg); 
+			background-repeat: no-repeat;
+			background-size: 120%;
+			background-position: -140px -250px;
+			color:white;
+    		text-align: center;
+		}
+		.header>.hole{
+			position: relative;
+			margin: 0 auto;
+			width: 1350px;
+			height: 700px;
+			overflow: hidden; 
+		}
+		.header button{
+			position: absolute;
+			top: 280px;
+			left: 40px;
+			width: 40px;
+			height: 40px;
+			border: 3px solid #999;
+			border-radius: 50%;
+			background: none;
+			color: #999;
+			font-size: 32px;
+			font-weight: bolder;
+			line-height: 30px;
+			text-align: center;
+			cursor: pointer;
+		}
+		.header #rightSlide{
+			left: auto;
+			right: 40px;
+		}
+		.header .img-ct{
+			display: flex;
+			height: 600px;
+			font-size: 0;
+			margin-left: -1350px;
+		}
+		.header .img-ct > li{
+			display: inline-block;
+		}
+		.header .img-ct img{
+			width: 1350px;
+			height: 700px;
+		}
+		.header .tag{
+			position: absolute;
+			bottom: 15px;
+			left: 50%;
+			transform: translateX(-50%);
+			margin: 0 auto;
+		}
+		.header .tag >li{
+			display: inline-block;
+			width: 60px;
+			height: 15px;
+			border: 2px solid #999;
+			border-radius: 15px;
+			cursor: pointer;
+		}
+		.active{
+			background-color: #999;
+		}
+		.header > .welcome{
+			position: absolute;
+			top: 0;
+			left: 138px;
+			margin: 0 auto;
+			width: 1050px;
+			height: 700px;
+		}
+		.header > .welcome > #welcome{
+			font-family: "Droid Serif";
+    		font-style: italic;
+    		font-size: 50px;
+    		padding-top: 200px;
+		}
+		.header > .welcome > #meetyou{
+			margin:30px auto;
+			font-family: Helvetica;
+			font-size: 75px;
+			font-weight: 700;
+		}
+		.header > .welcome > a{
+			display: block;
+			margin:50px auto 200px auto;
+			width: 200px;
+			height: 70px;
+			background-color: orange;
+			border-radius: 4px;
+			color: #fff;
+			font-weight: bold;
+			font-family: Arial,sans-serif;
+			font-size: 20px;
+			line-height: 70px;
+		}
+
+		/*header*/
+		
+		.services{
+			box-sizing: border-box;
+			height: 600px;
+			width: 1200px;
+			color: #000;
+			margin:0 auto;
+		}
+		.services > ul {
+			display: flex;
+		}
+		.services > ul >li{
+			width: 380px;
+			margin: 10px;
+			text-align: center;
+		}
+		.services > ul >li > .icont{
+			width: 100px;
+			height: 100px;
+			margin: 10px auto;
+			border-radius: 50%;
+			background-color: rgb(254,209,54);
+			font-size: 60px;
+			color: white;
+			line-height: 100px;
+			text-align: center;
+		}
+		.services > ul >li > h3{
+			font-size: 26px;
+			line-height: 40px;
+		}
+		.services > ul >li > p{
+			font-size: 16px;
+			line-height: 24px;
+    		font-family: "Droid Serif";
+    		font-style: italic;
+   			font-weight: 400;
+   			color: rgb(75,75,75);
+		}
+		/*services*/
+		.protfolio{
+			width: 100%;
+			background-color: #eee;
+			padding-bottom: 50px;
+		}
+		
+		.protfolio > ul{
+			position: relative;
+			width: 1250px;
+			height: 500px;
+			margin:0 auto;
+		}
+		.protfolio > ul > li{
+			position: absolute;
+			margin-left: 50px;
+			margin-right: 0; 
+			margin-bottom: 20px;
+			width: 350px;
+		}
+		.protfolio > ul > li >#first {
+			display: block;
+			overflow: hidden;
+			position: relative;
+			width: 350px;
+		}
+		.protfolio > ul > li >#first >.img-hover{
+			width: 350px;
+			height: 100%;
+			background-color: rgb(254,213,73);
+			opacity: 0;
+			position: absolute;
+			z-index: 2;
+			text-align: center;
+			line-height: 250px;
+			font-size: 60px;
+			color: white;
+		}
+		.protfolio > ul > li >#first:hover >.img-hover{
+			opacity: 0.6;
+		}
+		.protfolio > ul > li >#first >img{
+			width: 400px;
+			position: relative;
+			z-index: 1;
+		}
+
+		.protfolio > ul > li >#second{
+			text-align: center;
+			background-color: white;
+			font-size: 20px;
+			font-weight: bold;
+			padding: 20px;
+		}
+		.protfolio > ul > li >#second >#little{
+    		font-style: italic;
+    		font-size: 16px;
+    		font-weight: normal;
+		}
+		.protfolio > .loadmore{
+			display: block;
+			margin:0 auto;
+			padding: 20px 30px;
+			background-color: orange;
+			color: white;
+			font-size: 20px;
+			border: none;
+			border-radius: 4px;
+		}
+		/*protfolio*/
+
+		.container{
+			height: 350px;
+			position: relative;
+		}
+
+		.container >.circle{
+			width: 180px;
+			height: 180px;
+			margin: 10px auto;
+			border-radius: 50%;
+			border:5px solid #ddd;
+			background-image: url(http://www.faxinglu.com/meifa/uploads/allimg/c120716/1342421X91P20-S103.jpg);
+			background-size: 100%;
+		    background-repeat: no-repeat;
+		    background-position: 0;
+			vertical-align: middle;
+			position: relative;
+			z-index: 2;
+		}
+		.container > .circle:after{
+			content: "";
+			display: block;
+			width: 0;
+			height: 175px; 
+			position: relative;
+			top:180px;
+			left: 88px;
+			z-index: 1;
+			border:2px solid #ddd;
+			background-color: black;
+		}
+		.container >.text{
+			width: 350px;
+			line-height: 30px;
+			vertical-align: middle;
+			text-align: right;
+			float:left; 
+			position: absolute;
+			top:0;
+			left:140px;;
+		}
+		.container >.text>p{
+			color:#777
+		}
+		.about >.container:nth-child(odd) >.text{
+			text-align: left;
+			margin-left: 570px;
+		}
+		.container-last{
+			height: 250px;
+			position: relative;
+			z-index: 10;
+		}
+		.container-last >a {
+			display: block;
+			width: 140px;
+			height: 90px;
+			padding: 45px 20px;
+			margin: 10px auto;
+			border-radius: 50%;
+			border:5px solid #ddd;
+			background-color: orange;
+			color: white;
+			font-size: 28px;
+			font-weight: bolder;
+			text-align: center;
+			line-height: 30px;
+		}
+		/*about*/
+		.team >ul{
+			margin-top: 50px;
+		}
+		.team >ul >li >.icont{
+			width: 250px;
+			height: 250px;
+			margin: 10px auto;
+			border-radius: 50%;
+			background-image: url(http://img5.duitang.com/uploads/item/201411/25/20141125224136_PXCYe.jpeg);
+			background-size: 450px ;
+			background-position: -80px -2px;
+			background-repeat: no-repeat;
+			overflow: hidden;
+		}
+		.team >ul >li >.icont>img{
+			width: 100%;
+		}
+		.team >.team-footer{
+			width: 750px;
+			height: 80px;
+			font-size: 18px;
+			line-height: 40px;
+			text-align: center;
+			margin:30px auto;
+			margin-bottom: 100px;
+   			color: rgb(75,75,75);
+		}
+		/*team*/
+		.contact{
+			width: 100%;
+			background-color: black;
+			position: relative;
+		}
+		.contact >.subtitle>h2{
+			color:white;
+		}
+		form{
+			width: 1200px;
+			margin: 0 auto;
+		}
+		form >#contact-way{
+			float: left;
+			margin:20px;
+		}
+		form >#contact-way>input[type="text"]{
+			display: block;
+			width: 510px;
+			height: 60px;
+			margin: 20px;
+			padding: 0 20px ;
+			font-size: 20px;
+			font-weight: bold;
+			line-height: 60px;
+			background-color: #fff;
+			border-radius: 3px;
+		}
+		form >#contact-wrods{
+			float: right;
+			margin:20px;
+		}
+		form >#contact-wrods>textarea{
+			display: block;
+			width: 480px;
+			height: 230px;
+			margin: 20px 0;
+			padding: 0 20px ;
+			font-size: 18px;
+			font-weight: bold;
+			line-height: 60px;
+			background-color: #fff;
+			border-radius: 3px;
+		}
+		form >input[type="submit"]{
+			display: block;
+			width: 230px;
+			height: 70px;
+			color: white;
+			font-size: 28px;
+			font-weight: bolder;
+			line-height: 70px;
+			text-align: center;
+			background-color: orange;
+			border-radius: 5px;
+			margin: 0 auto;
+			margin-bottom: 100px;
+			border:1px solid green;
+		}
+		/*contact*/
+		.footer{
+			width: 1000px;
+			margin:0 auto;
+			display: flex;
+			justify-content: space-between;
+			align-items:center;
+		}
+		.footer >.policy >a{
+			color: #aaa;
+		}
+		.footer >.policy >a:hover{
+			color: orange;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="navigation clearfix">
+		<div class="layout clearfix">
+			<a href="#">Start Bootstrap</a>
+			<a href="#services">SERVICES</a>
+			<a href="#protfolio">PORTFOLIO</a>
+			<a href="#about">ABOUT</a>
+			<a href="#team">TEAM</a>
+			<a href="#contact">CONTACT</a>
+		</div>
+	</div>
+	<div class="header">
+		<div class="hole">
+			<div class="btn">
+				<button id="leftSlide"><</button>
+				<button id="rightSlide">></button>	
+			</div>
+			<ul class="img-ct">
+				<li id="0"><img src="http://img.ivsky.com/img/bizhi/pre/201606/24/daniel_wu-007.jpg" /></li>
+				<li id="1"><img src="http://i4.piimg.com/7630/3c4a144a64dca198.jpg" /></li>
+				<li id="2"><img src="http://i4.piimg.com/7630/aa7eed5ef61c7df5.jpg" /></li>
+			</ul>
+			<ul class="tag">
+				<li id="0"></li>
+				<li id="1" class="active"></li>
+				<li id="2"></li>
+			</ul>
+		</div>
+		<div class="welcome">
+			<div id="welcome">Welcome To My World</div>
+			<div id="meetyou">IT'S NICE TO MEET YOU</div>
+			<a href="resume.html">TELL ME MORE</a>
+		</div>
+	</div> 
+	<div class="main">
+		<a name="services"></a>
+		<div class="item services">
+			<div class="subtitle">
+				<h2>SERVICES</h2>
+				<P>Lorem ipsum dolor sit amet consectetur.</P>
+			</div>
+			<ul>
+				<li>
+					<div class="icont iconfont">&#xe600;</div>
+					<h3>E-Commerce</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit</p>
+				</li>
+				<li>
+					<div class="icont iconfont">&#xe644;</div>
+					<h3>E-Commerce</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit</p>
+				</li>
+				<li>
+					<div class="icont iconfont">&#xe62c;</div>
+					<h3>E-Commerce</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit</p>
+				</li>
+
+			</ul>
+		</div>
+		<a name="protfolio"></a>
+		<div class="item protfolio">
+			<div class="subtitle">
+				<h2>PORTFOLIO</h2>
+				<P>Lorem ipsum dolor sit amet consectetur.</P>
+			</div>
+			<ul class="protfoliolist">
+				<li>
+					<a href="resume.html" id="first">
+						<div class="img-hover iconfont">&#xe67a;</div>
+						<img src="http://a0.att.hudong.com/85/76/01300000569933127164768808646.jpg">
+					</a>
+					<div id="second"><p>Round Icons</p><p id="little">Graphic Design</p></div>
+				</li>
+				<li>
+					<a href="resume.html" id="first">
+						<div class="img-hover iconfont">&#xe67a;</div>
+						<img src="http://picuser.city8.com/news/image/20140819/16166811_748790.jpg">
+					</a>
+					<div id="second"><p>Round Icons</p><p id="little">Graphic Design</p></div>
+				</li>
+				<li>
+					<a href="resume.html" id="first">
+						<div class="img-hover iconfont">&#xe67a;</div>
+						<img src="http://www.faxinglu.com/meifa/uploads/allimg/c120716/1342421X91P20-S103.jpg">
+					</a>
+					<div id="second"><p>Round Icons</p><p id="little">Graphic Design</p></div>
+				</li>
+			</ul>
+			<button class="loadmore">LOAD MORE</button>
+		</div>
+		<a name="about"></a>
+		<div class="item about">
+			<div class="subtitle">
+				<h2>ABOUT</h2>
+				<P>Lorem ipsum dolor sit amet consectetur.</P>
+			</div>
+			<div class="container">
+				<div class="circle"></div>
+				<div class="text">
+					<h3>2009-2011</h3>
+					<h3>Our Humble Beginnings</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+				</div>
+			</div>
+			<div class="container">
+				<div class="circle"></div>
+				<div class="text" >
+					<h3>2009-2011</h3>
+					<h3>Our Humble Beginnings</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+				</div>
+			</div>
+			<div class="container">
+				<div class="circle"></div>
+				<div class="text">
+					<h3>2009-2011</h3>
+					<h3>Our Humble Beginnings</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+				</div>
+			</div>
+			<div class="container-last">
+				<a href="resume.html">BE PART OF OUR STORY!</a>
+			</div>
+		</div>
+		<a name="team"></a>
+		<div class="item team">
+			<div class="subtitle">
+				<h2>OUR AMAZING TEAM</h2>
+				<P>Lorem ipsum dolor sit amet consectetur.</P>
+			</div>
+			<ul>
+				<li>
+					<div class="icont"><img src="http://www.faxinglu.com/meifa/uploads/allimg/c120716/1342421X91P20-S103.jpg"></div>
+					<h3>E-Commerce</h3>
+					<p>Lead Developer</p>
+					<div class="bird">
+						<a href="resume.html" class="iconfont">&#xe759;</a>
+						<a href="resume.html" class="iconfont">&#xe629;</a>
+						<a href="resume.html" class="iconfont">&#xe631;</a>
+					</div>
+				</li>
+				<li>
+					<div class="icont"><img src="http://www.faxinglu.com/meifa/uploads/allimg/c120716/1342421X91P20-S103.jpg"></div>
+					<h3>E-Commerce</h3>
+					<p>Lead Developer</p>
+					<div class="bird">
+						<a href="resume.html" class="iconfont">&#xe759;</a>
+						<a href="resume.html" class="iconfont">&#xe629;</a>
+						<a href="resume.html" class="iconfont">&#xe631;</a>
+					</div>
+				</li>
+				<li>
+					<div class="icont"><img src="http://www.faxinglu.com/meifa/uploads/allimg/c120716/1342421X91P20-S103.jpg"></div>
+					<h3>E-Commerce</h3>
+					<p>Lead Developer</p>
+					<div class="bird">
+						<a href="resume.html" class="iconfont">&#xe759;</a>
+						<a href="resume.html" class="iconfont">&#xe629;</a>
+						<a href="resume.html" class="iconfont">&#xe631;</a>
+					</div>
+				</li>
+			</ul>
+			<div class="team-footer"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p></div>
+		</div>
+		<a name="contact"></a>
+		<div class="item contact">
+			<div class="subtitle">
+				<h2>CONTACT US</h2>
+				<P>Lorem ipsum dolor sit amet consectetur.</P>
+			</div>
+			<form class="clearfix">
+				<div id="contact-way">
+					<input type="text" id="name" name="name" placeholder="YOUR NAME">
+					<input type="text" id="email" name="email" placeholder="YOUR EMAIL">
+					<input type="text" id="phone" name="phone" placeholder="YOUR PHONE">
+				</div>
+				<div id="contact-wrods">
+					<textarea id="words" name="wrods" placeholder="YOUR MESSAGE"></textarea>
+				</div>
+				<input type="submit" value="send message">
+			</form>	
+		</div>
+	</div> 
+	<div class="footer">
+		<div class="copyright">Copyright &#169; Your Website 2014</div>
+		<div class="bird">
+			<a href="resume.html" class="iconfont">&#xe759;</a>
+			<a href="resume.html" class="iconfont">&#xe629;</a>
+			<a href="resume.html" class="iconfont">&#xe631;</a>
+		</div>
+		<div class="policy">
+			<a href="">Privacy Policy</a>
+			<a href=""> Terms of Use</a>
+		</div>
+	</div>
+	<script src="./tool/jquery.min.js"></script>
+	<script src="./modules/publish/bundle.js"></script>
+<!-- 	<script type="text/javascript">
+	requirejs.config({
+	    baseUrl: 'modules',
+	    paths: {
+	        jquery:'../tool/jquery'
+    		}
+	});
+	requirejs(['main']);
+</script> -->
+</body>
+</html>
+
+
+<!--  shashengwan url(http://img5.duitang.com/uploads/item/201411/25/20141125224136_PXCYe.jpeg)
+nazi url(http://a4.att.hudong.com/76/13/01300000098168129137130256902.jpg)
+siyue url(http://img5q.duitang.com/uploads/item/201502/06/20150206170223_YkusP.jpeg)
+-->

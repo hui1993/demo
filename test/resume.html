@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>个人简历</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		ul,ol{list-style: none;}
+		a{text-decoration: none;}
+		@font-face {
+  font-family: 'iconfont';  /* project id 364821 */
+  src: url('//at.alicdn.com/t/font_rdgzs3d2frnhr529.eot');
+  src: url('//at.alicdn.com/t/font_rdgzs3d2frnhr529.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_rdgzs3d2frnhr529.woff') format('woff'),
+  url('//at.alicdn.com/t/font_rdgzs3d2frnhr529.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_rdgzs3d2frnhr529.svg#iconfont') format('svg');
+}
+
+		.clearfix:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		#iconfont{
+			font-size: 24px;
+		}
+
+
+		.layout{
+			width: 700px;
+			border: 1px solid #ddd;
+			margin: 30px auto;
+			padding: 50px 100px;
+			box-shadow: 2px 2px 2px #ddd ;
+			font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+		}
+		.header{
+			margin-top: 20px;
+		}
+		.portrait{
+			float: left;
+		}
+		.portrait > #picture{
+			width: 150px;
+			height: 150px;
+			border-radius: 50%;
+			background-image: url(http://i.38mhw.com/xinwei201607/a18126.jpg);
+			background-position: -91px -19px;
+			float: left;
+			display: block;
+		}
+		.portrait > #name{
+			float: left;
+			margin: 35px;
+		}
+		.portrait > #name >h1{
+			font-size: 42px;
+			color: #aaa;
+			text-align: center;
+			letter-spacing: 10px;
+		}
+		.portrait > #name >p{
+			font-size: 20px;
+			color: #ccc;
+			text-indent: 0;
+		}
+		.header >.contact{
+			width: 300px;
+			font-size: 16px;
+			float: right;
+			margin-right: -20px;
+		}
+		.header > .contact > .contact-header{
+			font-size: 32px;
+			font-weight: bold;
+			border-bottom: 2px solid;
+			opacity: 0.6;
+		}
+		.header > .contact > ul{
+			margin: 10px;
+			line-height: 24px;
+		}
+		.header > .contact > ul >li > span{
+			font-family: 'iconfont';
+			font-style: normal;
+			font-size: 24px;
+			vertical-align: middle;
+			margin-right: 10px;
+		}
+
+		.module{
+			margin-top: 30px;
+		}
+		.module header{
+			font-size: 28px;
+			font-weight: bold;
+			width: 400px;
+			border-bottom: 1px solid #ddd;
+		}
+		.module .iteam{
+			font-size: 18px;
+			margin-top: 20px; 
+			padding: 10px 0 0 100px;
+			border-left: 5px solid #ddd;
+		}
+		.module .society{
+			margin-top: 0;
+			margin-bottom: 20px;
+		}
+		.module > .iteam > h3{
+			font-size: 24px;
+			margin-left: -10px;
+		}
+		.module > .iteam > h3 > span{
+			opacity: 0.5;
+		}
+		.module > .iteam > h3:before{
+			content: "";
+			display: inline-block;
+			position: relative;
+			top:-5px;
+			left: -97px;
+			width: 10px;
+			height: 10px;
+			background-color: black;
+			border-radius: 50%;
+		}
+		.module > .iteam > p{
+			line-height: 32px;
+		}
+		.extra > #activity{
+			width: 300px;
+			float: left;
+		}
+		.extra  header{
+			width: 300px;
+			font-size: 24px;
+			color: #aaa;
+			border-bottom: 1px solid #ddd;
+		}
+		.extra p{
+			text-indent: 0;
+		}
+		.extra  > #activity > ul{
+			margin-left: 100px;
+			margin-top: 10px;
+		}
+		.extra > #activity > ul > li{
+			margin-top: 20px;
+			position: relative;
+		}
+		.extra > #activity > ul > #volunteer:before{
+			content: "";
+			display: inline-block;
+			width: 80px;
+			height: 60px;
+			position: absolute;
+			top:0;
+			left: -90px;
+			z-index: 10;
+			background-image: url(http://i1.muzisoft.com/uploads/tag/146492293861.jpg);
+			background-size: 90px 50px;
+			background-repeat: no-repeat; 
+			background-position: -10px 0;
+
+		}
+		.extra > #activity > ul > #marathon:before{
+			content: "";
+			display: inline-block;
+			width: 80px;
+			height: 60px;
+			position: absolute;
+			top:0;
+			left: -90px;
+			z-index: 10;
+			background-image: url(http://www.zsnews.cn/zt/2016zm/fix_imgs/logo.jpg);
+			background-size: 90px 50px;
+			background-repeat: no-repeat;
+		}
+		.extra > #skill{
+			width: 300px;
+			float: right;
+		}
+		.extra > #skill >ul{
+			display: flex;
+			justify-content: space-around;
+			flex-wrap: wrap;
+			margin-top: 10px;
+			margin-left: -40px;
+		}
+		.extra > #skill >ul >li{
+			width: 100px;
+			height: 50px;
+			line-height: 50px;
+			padding-left: 20px;
+			font-size: 18px;
+		}
+		.extra > #skill >ul >li > span{
+			font-family: 'iconfont';
+			font-style: normal;
+			font-size: 24px;
+			vertical-align: middle;
+			margin-right: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="layout clearfix">
+		<div class="header clearfix">
+			<div class="portrait clearfix">
+				<div id="picture"></div>
+				<div id="name">
+					<h1>小 菜</h1>
+					<p>web前端工程师</p>
+				</div>
+			</div>
+			<div class="contact">
+				<div class="contact-header">contact</div>
+				<ul>
+					<li><span id="iconfont">&#xe618;</span>电话：18070941637</li>
+					<li><span id="iconfont">&#xe615;</span>邮箱：864728298@qq.com</li>
+					<li><span id="iconfont">&#xe600;</span>地址：深圳市宝安区洪福雅苑</li>
+					<li><span id="iconfont">&#xeac0;</span>GitHub：hui1993</li>
+				</ul>
+			</div>
+		</div>
+		<div class="module exprence">
+			<header>工作经历</header>
+			<div class="iteam">
+				<h3>中建二局一公司 <span>/2016.08--2017.07</span></h3>
+				<p>工作岗位：技术员（南宁领秀前城项目部）</p>
+				<p>工作内容：主要负责审核施工图纸，编制进度计划，编制施工方案，施工方案交底，解决施工过程中的技术问题，技术资料管理，三维模型制作与管理，项目情况汇报PPT。</p>
+				<p>获得荣誉：QC成果获得深圳市优秀奖，广东省二等奖，广西壮族自治区二等奖，施工技术获得专利。</p>
+			</div>
+		</div>
+		<div class="module educating">
+			<header>教育经历</header>
+			<div class="iteam school">
+				<h3>武汉理工大学 <span>/2012.09--2016.07</span></h3>
+				<p>专业：工程力学</p>
+				<p>主修课程：学习c语言，高等数学，线性代数，概率论，理论力学，材料力学等专业课程，曾选修大数据，VB等课程，并取得优异成绩。</p>
+			</div>
+			<div class="iteam society">
+				<h3>饥人谷 <span>/2017.06--2017.09</span></h3>
+				<p>web前端培训</p>
+				<p>学习内容：html5，css3，JavaScript，node.js，vue.js，AJAX</p>
+				<p>个人作品展示：<a href="#">个人博客</a>，<a href="#">企业网站</a>，<a href="#">实战项目</a></p>
+			</div>
+		</div>
+		<div class="extra">
+			<div id="activity">
+				<header>公益活动</header>
+				<ul>
+					<li id="volunteer">
+						<h3>志愿者服务</h3>
+						<p>xxxxxxxxxxxxxxxxxxxxxxx</p>
+						<p>xxxxxxxxxxxxxxxxxxx</p>
+					</li>
+					<li id="marathon">
+						<h3>马拉松比赛</h3>
+						<p>xxxxxxxxxxxxxxxxxxxxxxx</p>
+						<p>xxxxxxxxxxxxxxxxxxx</p>
+					</li>
+				</ul>
+			</div>
+			<div id="skill">
+				<header>职业技能</header>
+				<ul>
+					<li><span id="iconfont">&#xe755;</span>HTML5</li>
+					<li><span id="iconfont">&#xe63c;</span>css3</li>
+					<li><span id="iconfont">&#xe602;</span>JavaScript</li>
+					<li><span id="iconfont">&#xe601;</span>jQuery</li>
+					<li><span id="iconfont">&#xe622;</span>AJAX</li>
+					<li><span id="iconfont">&#xe603;</span>Photoshop</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
