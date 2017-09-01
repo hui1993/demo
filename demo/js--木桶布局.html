@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>木桶布局</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		ol,ul{list-style: none;}
+
+		.layout{
+			margin: 20px;
+		}
+		.img-ct{
+			width: 1200px;
+			position: relative;
+			left: 10px;
+			margin: 0 auto;
+			font-size: 0;
+		}
+		.img-ct>img{
+			display: inline-block;
+			margin-top:10px;
+			margin-right: 10px;
+			height: 250px;
+		}
+
+	</style>
+	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+	<div class="layout">
+		<div class="img-ct">
+			<img src="http://www.sinaimg.cn/dy/slidenews/21_img/2015_29/1604_4332035_945702.jpg" alt="">
+			<img src="http://upload.chinaz.com/2015/1103/1446532075330.jpg" alt="">
+			<img src="http://www.sinaimg.cn/dy/slidenews/21_img/2015_44/41065_4581226_231387.jpg" alt="">
+			<img src="http://olpic.tgbusdata.cn/uploads/allimg/130620/126-130620162252952.jpg" alt="">
+			<img src="http://images.ali213.net/picfile/pic/2014/03/09/584_20140309113414688.jpg" alt="">
+			<img src="http://img4.duitang.com/uploads/item/201407/09/20140709154800_HsBBW.jpeg" alt="">
+			<img src="http://p0.so.qhimgs1.com/t01410385ecff8658bc.png" alt="">
+			<img src="http://img3.yxlady.com/yl/UploadFiles_5361/20150714/20150714153041653.jpeg" alt="">
+			<img src="http://www.sinaimg.cn/dy/slidenews/21_img/2015_29/1604_4332020_441699.jpg" alt="">
+			<img src="http://p4.so.qhimgs1.com/t010612deba558d387a.jpg" alt="">
+			<img src="http://lol.yzz.cn/public/images/120307/14500SM4-6.jpg" alt="">
+			<img src="http://p0.so.qhmsg.com/t01748c6ef66efff83f.jpg" alt="">
+			<img src="http://img1.dwstatic.com/lol/1401/253881628653/1389926961327.jpg" alt="">
+			<img src="http://a3.att.hudong.com/80/20/19300001349272134856202732108_950.jpg" alt="">
+		</div>
+		<div class="buttom">你看不见我的</div>
+
+
+	</div>
+<script type="text/javascript">
+	$(window).load(function(){
+		Bucket('.img-ct',250)
+	})
+		
+	function Bucket(ct,baseHeight){
+		init :{
+			var $ctWidth = $(ct).width()
+			var $baseHeight = baseHeight
+			var $rowWidth = 0
+			var $row = 0
+		} 
+		this.render = function(){
+			for (var i = 0; i < $(ct).children().length; i++) {
+				$rowWidth += $(ct).children().eq(i).width()
+				if($rowWidth>$ctWidth){
+					var $len = $('.row-'+$row).length
+					$newHeight = ($ctWidth-$len*10-10)/($rowWidth-$(ct).children().eq(i).width())*$baseHeight
+					$(ct).children('.row-'+$row).css({
+						height:$newHeight+"px"
+					})
+					$rowWidth = $(ct+'>img').eq(i).width()
+					$row++
+					$(ct).children().eq(i).addClass('row-'+$row)
+				}else{
+				$(ct).children().eq(i).addClass('row-'+$row)
+				}
+			}
+		}
+		this.render();
+	}
+
+
+		/*木桶布局函数*/
+	function bucketPlay(){
+		var $ctWidth = $('.img-ct').width()
+		console.log($ctWidth)
+		var $rowWidth = 0
+		var $row = 0
+		for (var i = 0; i < $('.img-ct>img').length; i++) {
+			$rowWidth =$rowWidth + $('.img-ct>img').eq(i).width()
+			console.log()
+			if($rowWidth>$ctWidth){
+				var $len = $('.row-'+$row).length
+				console.log($len)
+				$newHeight = ($ctWidth-$len*10-10)/($rowWidth-$('.img-ct>img').eq(i).width())*250
+				$('.row-'+$row).css({
+					height:$newHeight+"px"
+				})
+				$rowWidth = $('.img-ct>img').eq(i).width()
+				$row++
+				$('.img-ct>img').eq(i).addClass('row-'+$row)
+			}else{
+			$('.img-ct>img').eq(i).addClass('row-'+$row)
+			}
+		}
+	}
+
+
+</script>
+
+</body>
+</html>

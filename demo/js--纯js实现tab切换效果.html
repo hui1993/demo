@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;box-sizing: border-box;}
+		ul,ol{list-style: none;}
+
+		.layout{
+			width: 940px;
+			font-size: 24px;
+			color: #aaa;
+			margin: 80px auto;
+			padding: 20px;
+			box-shadow: 2px 2px 5px #aaa;
+		}
+
+		.layout >.tab {
+			width: 900px;
+			margin: 0 auto;
+			margin-bottom: 0;
+			font-size: 0;
+		}
+		.layout >.tab >li{
+			display: inline-block;
+			width: 300px;
+			line-height: 40px;
+			font-size: 24px;
+			text-align: center;
+			border: 1px solid #aaa;
+			border-right: none;
+			border-bottom: none;
+		}
+		.layout >.tab >li:last-Child{
+			border-right: 1px solid #aaa;
+		}
+		.layout >.tab >.active{
+			background-color: orange;
+			color: white
+		}
+
+		.layout >.content{
+			width: 900px;
+			height: 400px;
+			padding: 50px;
+			border: 1px solid #aaa;	
+			margin: 0 auto;
+		}
+		.layout >.content >li{
+			display: none;
+		}
+		.layout >.content >.active{
+			display: block;
+			color: #2f2f2f;
+		}
+	</style>
+</head>
+<body>
+	<div class="layout">
+		<ul class="tab">
+			<li class="active" id="0">tab1</li>
+			<li id="1">tab2</li>
+			<li id="2">tab3</li>
+		</ul>
+		<ul class="content">
+			<li class="active">content1</li>
+			<li>content2</li>
+			<li>content3</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var tab = document.querySelector('.layout ul')
+		var tabs = document.querySelectorAll('.layout .tab li')
+		var contents = document.querySelectorAll('.layout .content li')
+
+		tab.addEventListener('click',function(e){
+			for(var k=0;k<3;k++ ){
+				tabs[k].classList.remove("active")
+				console.log(1)
+			}
+/*			tabs.forEach(function(e,i,tabs){
+				tabs[i].classList.remove("active")
+			})*/
+			e.target.classList.add("active")
+			for(var j=0;j<3;j++ ){
+				contents[j].classList.remove("active")
+			}
+			var i = e.target.getAttribute('id')
+			contents[parseInt(i)].classList.add("active")
+		})
+
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>原型、对象</title>
+	<style type="text/css">
+		div{
+			margin: 10px auto;
+			height: 40px;
+			font-size: 20px;
+			color: orange;
+		}
+
+	</style>
+	<script src="../mock/blog/tool/jquery.js"></script>
+</head>
+<body>
+
+	<div>你是我的小呀小苹果</div>
+	<div>你是我的小呀小苹果</div>
+	<div>你是我的小呀小苹果</div>
+	<div>你是我的小呀小苹果</div>
+	<div>你是我的小呀小苹果</div>
+	<div>你是我的小呀小苹果</div>
+	<div>你是我的小呀小苹果</div>
+	<div>你是我的小呀小苹果</div>
+	<div>你是我的小呀小苹果</div>
+	<div>你是我的小呀小苹果</div>
+	<div>你是我的小呀小苹果</div>
+	<div>你是我的小呀小苹果</div>
+	<div>你是我的小呀小苹果</div>
+
+<script type="text/javascript">
+		
+		$('.gotop').on('click',function(){
+			console.log(1)
+			$(window).scrollTop(0)
+		})
+
+		/*gotop组件*/
+function Gotop (ct){
+       this.ct = $(ct);
+       this.bindEvent = function(){
+       	$(thisNode).on('click',function(){
+       		$(window).scrollTop(0)
+       	})
+       }
+       this.createNode = function(){
+       	thisNode = $('<div class="gotop">GO Top</div>');
+       	thisNode.css({
+       		'position': 'fixed',
+			'bottom': '20px',
+			'right': '40px',
+			'display': 'inline-block',
+			'height':'20px',
+			'padding':'10px',
+			'background-color': '#999',
+			'border-radius':'50%',
+			'color': 'white',
+			'opacity': '0.6',
+			'font-weight':'bolder',
+			'cursor': 'pointer'
+       	})
+       	return thisNode;
+       }
+       this.target = this.createNode
+
+       this.createNode();
+       this.ct.append(this.target)
+       this.bindEvent()
+    }
+var gotop1= new Gotop('body')
+
+
+/*构造函数创建对象*/
+    function Car (name,color,status){
+       this.name = name;
+       this.color = color; 
+       this.status = status;
+    }
+
+    Car.prototype.stop = function(){
+      this.status = "stop";  
+    }
+    Car.prototype.getStatus = function(){
+      console.log('The '+this.color+' '+this.name+' is '+this.status)  
+    }
+    Car.prototype.run = function(){
+      this.status = "running";  
+    }
+    
+    var car1 = new Car("hornet","yellow","stop");
+    car1.run()
+    car1.getStatus();//
+
+
+    function People (name){
+      this.name = name;
+      this.sayName = function(){
+        console.log('my name is:' + this.name);
+      }
+    }
+
+    People.prototype.walk = function(){
+      console.log(this.name + ' is walking');  
+    }
+
+    var p1 = new People('饥人谷');
+    var p2 = new People('前端');
+
+
+/*统计字符串中出现次数最多的字符*/
+function getMostOften(string){
+    var Str = {};
+    var key ;
+    for(var i = 0; i < string.length; i++){
+        key = string[i];
+        if(!Str[key]){
+            Str[key] = 1;
+        }
+        else{
+             Str[key] ++;
+        }
+    }
+    var max = 0;
+    var strKey;
+    for(var k in Str){
+        if(Str[k] > max){
+            max = Str[k];
+            strKey = k;
+        }
+    }
+    return strKey;
+}
+
+/*  继承属性和方法  */
+
+function Person(name, sex){
+    this.name = name;
+    this.sex = sex;
+}
+
+Person.prototype.printName = function(){
+    console.log(this.name);
+};    
+
+function Male(name, sex, age){
+    Person.call(this, name, sex);//继承父函数的属性
+    this.age = age;
+}
+inherit(Person, Male);//继承父函数的方法
+
+// 在继承函数之后写自己的方法，否则会被覆盖
+Male.prototype.printAge = function(){
+    console.log(this.age);
+};
+
+var m = new Male('Byron', 'm', 26);
+m.printName();
+
+/*   继承函数：
+		1.以父元素的原型创建一个空对象；
+		2.空对象的构造器指向子元素；
+		3.子元素的原型指向空对象   			*/
+
+function inherit(superType, subType){
+    var _prototype  = Object.create(superType.prototype);
+    _prototype.constructor = subType;
+    subType.prototype = _prototype;
+}
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>瀑布流</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		ol,ul{list-style: none;}
+
+		.layout{
+			max-width: 100%;
+		}
+		.img-ct{
+			position: relative;
+			margin: 0 auto;
+		}
+		.img-ct>li{
+			position:absolute; 
+			margin-right:10px;
+			margin-top: 10px;
+			font-size: 0;
+		}
+		.img-ct>li>img{
+			position: relative;
+			width: 200px;
+		}
+	</style>
+	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+	<div class="layout">
+		<ul class="img-ct">
+			<li>
+				<img src="http://www.sinaimg.cn/dy/slidenews/21_img/2015_29/1604_4332035_945702.jpg" alt="">
+			</li>
+			<li>
+				<img src="http://upload.chinaz.com/2015/1103/1446532075330.jpg" alt="">
+			</li>
+			<li>
+				<img src="http://www.sinaimg.cn/dy/slidenews/21_img/2015_44/41065_4581226_231387.jpg" alt="">
+			</li>
+			<li>
+				<img src="http://wenwen.soso.com/p/20101211/20101211165159-1251481384.jpg" alt="">
+			</li>
+			<li>
+				<img src="http://images.ali213.net/picfile/pic/2014/03/09/584_20140309113414688.jpg" alt="">
+			</li>
+			<li>
+				<img src="http://img4.duitang.com/uploads/item/201407/09/20140709154800_HsBBW.jpeg" alt="">
+			</li>
+			<li>
+				<img src="http://img1.gtimg.com/14/1474/147424/14742418_980x1200_0.png" alt="">
+			</li>
+			<li>
+				<img src="http://images2.china.com/game/zh_cn/picnews/11128819/20150108/19187583_2015010811302154986800.jpg" alt="">
+			</li>
+			<li>
+				<img src="http://www.sinaimg.cn/dy/slidenews/21_img/2015_29/1604_4332020_441699.jpg" alt="">
+			</li>
+			<li>
+				<img src="http://img.3dmgame.com/uploads/allimg/170505/153_170505142700_2_lit.jpg" alt="">
+			</li>
+		</ul>
+		<div class="buttom">你看不见我的</div>
+	</div>
+<script type="text/javascript">
+
+	var clock 
+
+	$(window).load(function(){
+		waterFall()
+		$(window).resize(function(){
+			if(clock){
+				clearTimeout()
+			}
+			clock = setTimeout(function(){
+				waterFall()
+			},300)
+		})
+	})
+
+
+/*瀑布流布局的基本参数W为照片的宽度，即可用把照片宽度设置为变量，然后更改布局*/
+
+	function waterFall(){
+	/*s第一步：确定列数，设置空数组*/
+		var $windowWidth = $(window).width()
+			console.log($windowWidth)
+		var $columnWidth = $('.img-ct>li').outerWidth(true)
+			console.log($columnWidth)
+		var $length = Math.floor($windowWidth/$columnWidth)
+
+		$('.img-ct').css({width:$columnWidth*$length+"px"})
+
+		console.log($length)
+			var arr = []
+		for (var i = $length - 1; i >= 0; i--) {
+			arr[i]=0
+		}
+		console.log(minArr(arr))
+	/*s第二步：遍历图片，瀑布流布局*/
+		for (var i = 0; i <$('.img-ct>li').length; i++) {
+			var minIndex = minArr(arr)
+			console.log(minIndex)
+			var $imgHeight = $('.img-ct>li').eq(i).outerHeight(true)
+			console.log($imgHeight)
+			$('.img-ct>li').eq(i).css({
+				top:arr[minIndex]+"px",
+				left:minIndex*$columnWidth+"px"
+			}).addClass("item-"+minIndex)
+			arr[minIndex]=$imgHeight+arr[minIndex]
+			console.log(arr)
+
+		}
+		$('.img-ct').css({height:maxArr(arr)+"px"})
+
+		/*s取数组中最大值最小值的函数，
+		也可以直接简单的使用Math与apply结合，
+		最大值：Math.max.apply(null,arr),
+		最小值：Math.min.apply(null,arr),
+		*/
+		function minArr(arr){
+			var min = arr[0];
+			var minIndex = 0;
+			for (var i = 0; i < arr.length; i++) {
+				if(min > arr[i]){
+					min = arr[i];
+					minIndex = i
+				}
+			}
+			return minIndex
+		}
+
+		function maxArr(arr){
+			var max = arr[0];
+			for (var i = 0; i < arr.length; i++) {
+				if(max < arr[i]){
+					max = arr[i];
+				}
+			}
+			return max;
+		}
+	}
+
+
+
+</script>
+
+</body>
+</html>
+

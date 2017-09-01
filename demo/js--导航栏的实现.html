@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js</title>
+	<style type="text/css">
+		*{margin:0;padding: 0;box-sizing:border-box;}
+		ol,ul{list-style: none;}
+		a{text-decoration: none;}
+
+		.layout{
+			max-width: 1200px;
+			margin: 20px auto;
+			padding: 20px ;
+			padding-bottom: 90px;
+			border: 1px solid #999;
+			box-shadow: 2px 2px 2px #999;
+		}
+		.layout > .container{
+			width: 250px;
+			background-color: rgb(200,18,19);
+			color: white;
+		}
+		.layout > .container > li{
+			position: relative;
+			padding: 0 20px;
+			line-height: 40px;
+			font-size: 18px;
+		}
+		.layout > .container > li > a{
+			display: block;
+			width: 100%;
+			color: #ddd;
+			border-bottom: 1px solid #ccc;
+		}
+		.layout > .container > li:last-child >a{
+			border: none;
+		}
+		.layout > .container > li > span{
+			float: right;
+		}
+		.layout > .container > li > .detail{
+			display: none;
+			position: absolute;
+			left: 250px;
+			top:0;
+			width: 160px;
+			border:1px solid #999;
+			color: #555;
+		}
+		.layout > .container > li > .detail >li{
+			float:left;
+			margin-left: 20px;
+			padding: 5px;
+			padding-right: 20px;
+			font-size: 14px;
+			line-height: 30px;
+			cursor: pointer;
+		}
+ 		.layout > .container > li.hover >.detail{
+			display: block;
+		} 
+	</style>
+	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+	<div class="layout">
+		<ul class="container">
+			<li>
+				<a href="">珠玉宝器</a>
+				<span>></span>
+				<ul class="detail">
+					<li>翡翠</li>
+					<li>玉石</li>
+					<li>水晶</li>
+					<li>玛瑙</li>
+					<li>宝石</li>
+					<li>珍珠</li>
+					<li>玉石</li>
+					<li>水晶</li>
+					<li>玛瑙</li>
+					<li>宝石</li>
+					<li>珍珠</li>
+				</ul>
+			</li>
+			<li>
+				<a href="">珠玉宝器</a>
+				<span>></span>
+				<ul class="detail">
+					<li>翡翠</li>
+					<li>玉石</li>
+					<li>水晶</li>
+					<li>玛瑙</li>
+					<li>宝石</li>
+					<li>珍珠</li>
+					<li>水晶</li>
+					<li>玛瑙</li>
+					<li>宝石</li>
+					<li>珍珠</li>
+				</ul>
+			</li>
+			<li>
+				<a href="">珠玉宝器</a>
+				<span>></span>
+				<ul class="detail">
+					<li>翡翠</li>
+					<li>玉石</li>
+					<li>水晶</li>
+					<li>玛瑙</li>
+					<li>宝石</li>
+					<li>珍珠</li>
+				</ul>
+			</li>
+			<li>
+				<a href="">珠玉宝器</a>
+				<span>></span>
+				<ul class="detail">
+					<li>翡翠</li>
+					<li>玉石</li>
+					<li>水晶</li>
+					<li>玛瑙</li>
+				</ul>
+			</li>
+			<li>
+				<a href="">珠玉宝器</a>
+				<span>></span>
+				<ul class="detail">
+					<li>翡翠</li>
+					<li>玉石</li>
+					<li>水晶</li>
+				</ul>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		$('.container').on('mouseenter','li',function(){
+			//$(this).children('.detail').show()
+			$(this).addClass('hover')
+		})
+		$('.container >li').on('mouseleave',function(){
+			//$(this).children('.detail').hide()
+			$(this).removeClass('hover')
+		})
+	</script>
+</body>
+</html>

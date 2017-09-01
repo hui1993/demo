@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>图片轮播</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;box-sizing: border-box;}
+		ul,ol{list-style: none;}
+
+		.hole{
+			position: relative;
+			margin: 20px auto;
+			width: 600px;
+			height: 400px;
+			overflow: hidden; 
+		}
+
+		button{
+			position: absolute;
+			top: 180px;
+			left: 40px;
+			width: 40px;
+			height: 40px;
+			border: 3px solid #999;
+			border-radius: 50%;
+			background: none;
+			color: #999;
+			font-size: 32px;
+			font-weight: bolder;
+			line-height: 30px;
+			text-align: center;
+			cursor: pointer;
+		}
+		#rightSlide{
+			left: 520px;
+		}
+		.img-ct{
+			display: flex;
+			height: 400px;
+			font-size: 0;
+			margin-left: -600px;
+		}
+		.img-ct > li{
+			display: inline-block;
+		}
+		.img-ct img{
+			width: 600px;
+			height: 400px;
+		}
+		.tag{
+			position: absolute;
+			bottom: 15px;
+			left: 50%;
+			transform: translateX(-50%);
+			margin: 0 auto;
+		}
+		.tag >li{
+			display: inline-block;
+			width: 60px;
+			height: 15px;
+			border: 2px solid #999;
+			border-radius: 15px;
+			cursor: pointer;
+		}
+		.active{
+			background-color: #999;
+		}
+	</style>
+	<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="hole">
+		<div class="btn">
+			<button id="leftSlide"><</button>
+			<button id="rightSlide">></button>	
+		</div>
+		<ul class="img-ct">
+			<li id="0"><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" /></li>
+			<li id="1"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg" /></li>
+			<li id="2"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg" /></li>
+		</ul>
+		<ul class="tag">
+			<li id="0"></li>
+			<li id="1" class="active"></li>
+			<li id="2"></li>
+		</ul>
+	</div>
+	<div class="hole">
+		<div class="btn">
+			<button id="leftSlide"><</button>
+			<button id="rightSlide">></button>	
+		</div>
+		<ul class="img-ct">
+			<li id="0"><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" /></li>
+			<li id="1"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg" /></li>
+			<li id="2"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg" /></li>
+		</ul>
+		<ul class="tag">
+			<li id="0"></li>
+			<li id="1" class="active"></li>
+			<li id="2"></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+
+
+    function Carousel($ct) {
+        this.$ct = $ct;
+        this.init();
+        this.bind();
+    }
+
+	Carousel.prototype.init = function(){
+		var $btnleft = this.$btnleft =this.$ct.find('#leftSlide'),
+			$btnright = this.$btnright =this.$ct.find('#rightSlide'),
+			$imgct = this.$imgct =this.$ct.find('.img-ct'),
+			$imgli = this.$imgli =this.$ct.find('.img-ct>li'),
+			$tag = this.$tag =this.$ct.find('.tag'),
+			$tagli = this.$tagli =this.$ct.find('.tag>li');
+
+	}
+
+	Carousel.prototype.bind = function(){
+		var _this = this
+
+		this.$btnright.on('click', function(){
+			_this.slideRight(500);
+		})
+
+		this.$btnleft.on('click', function(){
+			_this.slideLeft(500);
+		})
+
+		this.$tag.on('click','li',function(){
+			var $a = $(this).attr('id')
+			var $b = $('.active').attr('id')
+			if(($a - $b)>0){
+				for (var i = 0; i < Math.abs($a - $b); i++) {
+					_this.slideRight(500)
+					console.log("1")
+				}	
+			}else{
+				for (var i = 0; i < Math.abs($a - $b); i++) {
+					_this.slideLeft(500)
+					console.log("2")
+				}
+			}
+		})
+	}
+	Carousel.prototype.slideRight=function(duration){
+		var _this = this,
+			$imgli = this.$imgli =this.$ct.find('.img-ct>li');
+		this.$imgct.animate(
+			{'margin-left':'-=600px'},
+			{duration: duration,
+			complete: function() {
+				_this.$imgli.first().appendTo(_this.$imgct);
+				_this.$imgct.css('margin-left','+=600px');
+				_this.setBullet();	
+			}
+		})		
+	}
+	Carousel.prototype.slideLeft=function(duration){	
+		var _this = this,
+			$imgli = this.$imgli =this.$ct.find('.img-ct>li')
+		this.$imgct.animate(
+			{'margin-left':'+=600px'},
+			{duration: duration,
+			complete: function(){
+				_this.$imgli.last().prependTo(_this.$imgct);
+				_this.$imgct.css('margin-left','-=600px');
+				_this.setBullet();
+			}
+		})
+	}
+
+        Carousel.prototype.setBullet = function() {
+			var $id = this.$imgli.eq(1).attr('id')
+			this.$tagli.removeClass('active');
+			this.$tagli.eq($id).addClass('active')
+        }
+
+	new Carousel($('.hole').eq(0))
+	new Carousel($('.hole').eq(1))
+
+	</script>
+</body>
+</html>
+
+
