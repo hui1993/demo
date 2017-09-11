@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>魔方</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		ul{
+			display: flex;
+			flex-wrap: wrap;
+			list-style: none;
+		}
+		li{
+			width: 100px;
+			height: 100px;
+			border: 2px solid white;
+			border-radius: 5px;
+			box-sizing: border-box;
+		}
+		.container{
+			display: inline-block;
+			position: absolute;
+			top: 30%;
+			left: 40%;
+			width: 300px;
+			height: 300px;
+			transform-style: preserve-3d;
+			transform: translate3d(-150px,-150px,0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+			animation: scroll 10s infinite;
+		}
+
+		@keyframes scroll {
+	      0% {
+	        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+	      }
+	      100% {
+	        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+	      }
+	    }
+
+		.face{
+			position: absolute;
+			width: 300px;
+			height: 300px;
+			border: 2px solid white;
+		}
+		.face.front{
+			background: green;
+			transform: translate3d(0,0,150px);
+		}
+		.face.back{
+			background: yellow;
+			transform: translate3d(0,0,-150px);
+		}
+		.face.left{
+			background: black;
+			transform: translate3d(-150px,0,0) rotateY(90deg);
+		}
+		.face.right{
+			background: red;
+			transform: translate3d(150px,0,0) rotateY(90deg);
+		}
+		.face.top{
+			background: blue;
+			transform: translate3d(0,-150px,0) rotateX(90deg);
+		}
+		.face.bottom{
+			background: orange;
+			transform: translate3d(0,150px,0) rotateX(90deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="face front">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="face back">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="face left">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="face right">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>			
+		</div>
+		<div class="face top">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="face bottom">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>	
+	</div>
+</body>
+</html>
